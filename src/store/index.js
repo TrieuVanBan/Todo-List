@@ -9,7 +9,7 @@ import authReducer from "./authSlice";
 import todoListReducer from "./todoSlice";
 
 export const allReducers = combineReducers({
-  // auth: authReducer,
+  auth: authReducer,
   todo: todoListReducer,
 });
 

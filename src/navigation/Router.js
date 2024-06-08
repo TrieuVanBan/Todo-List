@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useSelector, useDispatch } from "react-redux";
 import TodoScreen from '../screens/Todo';
 import ProfileScreen from '../screens/Profile';
 import LoginScreen from '../screens/Login';
@@ -12,14 +13,14 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function Router() {
-
+  const user = useSelector((state) => state.auth.user);
   const TabHome = () => {
     return (
       <Tab.Navigator
         initialRouteName='Todo'
-        // screenOptions={{ headerShown: false }}
         // https://reactnavigation.org/docs/tab-based-navigation/
         screenOptions={({ route }) => ({
+          headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
@@ -47,11 +48,11 @@ export default function Router() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" options={{ headerShown: false }} component={TabHome} />
-        {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Navigator initialRouteName="Login">
+        {!user ?
+          <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+          : <Stack.Screen name="Home" options={{ headerShown: false }} component={TabHome} />
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );

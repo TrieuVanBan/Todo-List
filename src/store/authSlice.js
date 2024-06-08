@@ -3,31 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authSlice = createSlice({
   name: "authSlice",
   initialState: {
-    inputTaskValue: "",
+    user: null
   },
   reducers: {
-    setDeleteTodo: (state, action) => {
-      // console.log(action.payload);
-      const idxTask = state.todos.filter((task) => task.id !== action.payload);
-      state.todos = idxTask;
+    addUser: (state, action) => {
+      state.user = action.payload;
     },
-    addToTodos: (state, action) => {
-      console.log(action.payload);
-      let action_label = action.payload;
-      const newTask = {
-        id: state.todos.length + 1,
-        label: action_label,
-      };
-      state.todos.push(newTask);
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    logout: (state, action) => {
+      state.user = null;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setDeleteTodo, addToTodos, incrementByAmount } =
+export const { addUser, logout } =
   authSlice.actions;
 
 export default authSlice.reducer;

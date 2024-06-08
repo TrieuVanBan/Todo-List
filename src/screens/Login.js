@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, Image } from 'react-native';
 import { Layout, Input, Button, Text, TopNavigation } from '@ui-kitten/components';
+import { useSelector, useDispatch } from "react-redux";
+import { addUser } from "../store/authSlice";
+import styles from './styles/LoginStyles';
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('user@ban.com');
+  const [password, setPassword] = useState('123456');
+
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
-    // Xử lý logic đăng nhập tại đây
-    console.log('Email:', email);
-    console.log('Password:', password);
-    navigation.navigate('Home');
+    dispatch(addUser({ email, password }));
   };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Layout style={styles.container}>
+        <Image
+          source={require('../assets/to-do-list.png')}
+          style={styles.image}
+        />
         <Text style={styles.header}>Let's get started!</Text>
         <Text style={styles.title}>EMAIL ADDRESS</Text>
         <Input
@@ -40,38 +46,5 @@ const LoginScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  header: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    marginBottom: 20
-  },
-  title: {
-    alignSelf: 'flex-start',
-    marginTop: 20,
-    marginLeft: 10
-  },
-  input: {
-    marginVertical: 8,
-    borderRadius: 22
-  },
-  button: {
-    marginVertical: 16,
-    borderRadius: 22,
-    paddingHorizontal: 20,
-    paddingVertical: 15
-  },
-  forgotPassword: {
-    color: 'blue',
-    textDecorationLine: 'underline',
-  },
-});
 
 export default LoginScreen;
