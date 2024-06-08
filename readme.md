@@ -5,7 +5,7 @@ This is React Native Programing Test
 ## Preview
 
 <p align="center">
-  <img src="https://github.com/TrieuVanBan/Todo-List/blob/main/Record.gif" width=300/>
+  <img src="https://github.com/TrieuVanBan/Todo-List/blob/main/Record.gif" height="400"  />
 </p>
 
 
