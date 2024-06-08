@@ -4,7 +4,10 @@ This is React Native Programing Test
 
 ## Preview
 
-![Preview Gif](https://github.com/TrieuVanBan/Todo-List/blob/main/Record.gif)
+<p align="center">
+  <img src="(https://github.com/TrieuVanBan/Todo-List/blob/main/Record.gif" />
+</p>
+
 
 ## Install
 ```
